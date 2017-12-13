@@ -1,12 +1,12 @@
 Данные базы данных
 ==================
 
-| Parameter | Value |
-|----------------|----------------:|
-| __name BD__: | Tr |
-|__user__:  ||
-|__pass__:  ||
-|__server__:  ||
+| Parameter     | Value             |
+|---------------|------------------:|
+| __name BD__:  | Tr_demo_site      |
+| __user__:     | Tr                |
+| __pass__:     | xHVVWCRd4mAAqWrh  |
+| __server__:   | localhost         |
 
 
  
