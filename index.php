@@ -11,5 +11,13 @@ $bd=new bd($pathBD.'bd_install.txt');
 $bd->connect();
 $bd->disconnect();
 
+$bd=new bd($pathBD.'bd_install.txt');
+$bd->connect();
+$bd->disconnect();
+
+$bd=new bd($pathBD.'bd_install.txt');
+$bd->connect();
+$bd->disconnect();
+
 //Вызываем контроллер
 //require ($pathRoot.'protected/c/c_common.php');

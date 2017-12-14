@@ -14,7 +14,7 @@ class bd
 	private $password = 'xHVVWCRd4mAAqWrh';
 
 	public $link;
-
+//***************
 	static public $ii = 0;
 
 
@@ -49,16 +49,20 @@ class bd
 
 	function connect()
 	{
-		$link = mysqli_connect($this->host, $this->user, $this->password, $this->database)
-		or die("Ошибка подключения к БД" . mysqli_error($link));
+		$this->link = mysqli_connect($this->host, $this->user, $this->password, $this->database)
+		or die("Ошибка подключения к БД" . mysqli_error($this->link));
 		$openConnect = true;
-		mysqli_query($link, "SET NAMES utf8mb4");
-		mysqli_set_charset($link, 'utf8mb4');
-
+		mysqli_query($this->link, "SET NAMES utf8mb4");
+		mysqli_set_charset($this->link, 'utf8mb4');
+//***************
 		echo "В БД вошли_" . ++bd::$ii . "<br>";
 
 
-		mysqli_close($link);
-		$link = '';
+	}
+
+	function disconnect()
+	{
+		mysqli_close($this->link);
+		$this->link = '';
 	}
 }
