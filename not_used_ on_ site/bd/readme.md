@@ -7,6 +7,7 @@
 | __user__:     | Tr                |
 | __pass__:     | xHVVWCRd4mAAqWrh  |
 | __server__:   | localhost         |
+| __charset__:  | utf8mb4_unicode_ci|
 
 
  

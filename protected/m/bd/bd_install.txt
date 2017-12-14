@@ -1,0 +1,1 @@
+{"host":"localhost", "user":"Tr", "password":"xHVVWCRd4mAAqWrh", "database":"Tr_demo_site"}
