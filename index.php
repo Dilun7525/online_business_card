@@ -14,7 +14,10 @@ $object=[
 	'test2'=>"boergergeok's"
 ];
 	$where='id=1';
-$dataBase1->update('test_table',$object,$where);
+	$tr = htmlspecialchars("O'kipling<rger>||");
+	echo "tr= ".$tr."<br>";
+	$query = 'SELECT * FROM test_table WHERE test1='.$tr;
+$dataBase1->select($query) ;
 
 
 

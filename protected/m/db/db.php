@@ -1,9 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: dilun
- * Date: 14.12.17
- * Time: 0:02
+/**Драйвер для работы с базой данных
  */
 
 class db
@@ -78,6 +74,7 @@ class db
 	 * @param $table - имя таблицы
 	 * @param $object - массив, ключи - имена столбцов, значение - данные в базу
 	 * @return int id вставленной записи
+	 * @see db#insert($table, $object)
 	 */
 	public function insert($table, $object)
 	{
@@ -85,19 +82,20 @@ class db
 		$values = array();
 
 		foreach ($object as $key => $value) {
-			$key = mysqli_escape_string($this->link, $key . '');
+			$key = mysqli_real_escape_string($this->link, $key . '');
 			$columns[] = "`$key`";
 			if ($value === null) {
 				$values[] = 'NULL';
 			} else {
-				$value = mysqli_escape_string($this->link, $value . '');
+				$value = mysqli_real_escape_string($this->link, $value . '');
 				$values[] = "'$value'";
 			}
 		}
-		// Example: INSERT INTO `table` (`col1`, `col2`, `col3`) VALUES ('val1', 'val2', 'val3')
+
 		$columns = implode(', ', $columns);
 		$values = implode(', ', $values);
 
+ 		// Example: INSERT INTO `table` (`col1`, `col2`, `col3`) VALUES ('val1', 'val2', 'val3')
 		$query = sprintf("INSERT INTO `%s` (%s) VALUES (%s)", $table, $columns, $values);
 		$result = mysqli_query($this->link, $query);
 		if (!$result) {
@@ -106,58 +104,42 @@ class db
 		return mysqli_insert_id($this->link);
 	}
 
-	/** Выборка строк
-	 * @param $query - полный текст SQL запроса
-	 * @result array - массив полученных строк из БД
-	 * @return array
-	 */
-	public function select($query)
-	{
-		$result = mysqli_query($this->link, $query);
-		if (!$result) {
-			die(mysqli_error($this->link));
-		}
-		$arr = [];
-		while ($row = mysqli_fetch_assoc($result)) {
-			$arr[] = $row;
-		}
-		return $arr;
-	}
-
-
 
 	/**
 	 * @param $table - имя таблицы
 	 * @param $object - массив, ключи - имена столбцов, значение - данные в базу
 	 * @param $where - условие (часть SQL запроса)
 	 * @return int кол-во затронутых строк
+	 * @see db#update($table, $object, $where)
 	 */
 	public function update($table, $object, $where)
 	{
 		$sets = array();
 		foreach ($object as $key => $value) {
-			$key = mysqli_escape_string($this->link, $key . '');
+			$key = mysqli_real_escape_string($this->link, $key . '');
 			if ($value === null) {
 				$sets[] = "`$key`=NULL";
 			} else {
-				$value = mysqli_escape_string($this->link, $value . '');
+				$value = mysqli_real_escape_string($this->link, $value . '');
 				$sets[] = "`$key`='$value'";
 			}
 		}
 		$sets = implode(', ', $sets);
+
+		// UPDATE `table` SET `col1` = 'val1', `col2` = 'val2'
 		$query = sprintf("UPDATE `%s` SET %s WHERE %s", $table, $sets, $where);
 		$result = mysqli_query($this->link, $query);
 		if (!$result) {
 			die(mysqli_error($this->link));
 		}
 		return mysqli_affected_rows($this->link);
-		// UPDATE `table` SET `col1` = 'val1', `col2` = 'val2'
 	}
 
 	/**
 	 * @param $table - имя таблицы
 	 * @param @where - строка вида первичный ключ = число
 	 * @return int количество удаленных строк
+	 * @see db#delete($table, $where)
 	 */
 	public function delete($table, $where)
 	{
@@ -170,4 +152,26 @@ class db
 	}
 
 
+	/** Выборка строк
+	 * @param $query - полный текст SQL запроса
+	 * @result array - массив полученных строк из БД
+	 * @return array
+	 * @see db#select($query)
+	 */
+	public function select($query)
+	{
+
+		$query=mysqli_real_escape_string($this->link,$query);
+		echo "query= ".$query."<br>";
+		$result = mysqli_query($this->link, $query);
+		echo "result= ".$result."<br>";
+		/*if (!$result) {
+			die(mysqli_error($this->link));
+		}
+		$arr = [];
+		while ($row = mysqli_fetch_assoc($result)) {
+			$arr[] = $row;
+		}
+		return $arr;*/
+	}
 }
