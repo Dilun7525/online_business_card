@@ -17,7 +17,7 @@ $object=[
 	$tr = htmlspecialchars("O'kipling<rger>||");
 	echo "tr= ".$tr."<br>";
 	$query = 'SELECT * FROM test_table WHERE test1='.$tr;
-$dataBase1->select($query) ;
+$dataBase1->delete($where) ;
 
 
 
