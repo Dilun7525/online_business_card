@@ -127,7 +127,7 @@ class db
 		$sets = implode(', ', $sets);
 
 		// UPDATE `table` SET `col1` = 'val1', `col2` = 'val2'
-		$query = sprintf("UPDATE `%s` SET %s WHERE %s", $table, $sets, $where);
+		$query = sprintf("UPDATE `%s` SET %s WHERE `%s`", $table, $sets, $where);
 		$result = mysqli_query($this->link, $query);
 		if (!$result) {
 			die(mysqli_error($this->link));
@@ -165,6 +165,8 @@ class db
 		echo "query= ".$query."<br>";
 		$result = mysqli_query($this->link, $query);
 		echo "result= ".$result."<br>";
+
+
 		/*if (!$result) {
 			die(mysqli_error($this->link));
 		}
