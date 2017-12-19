@@ -52,7 +52,6 @@ class db
 		$fd = fopen($fileName, 'r') or die("не удалось открыть файл");
 		$strJson = json_decode(fgets($fd));
 		fclose($fd);
-
 		return $strJson;
 	}
 
@@ -94,9 +93,12 @@ class db
 
 		$columns = implode(', ', $columns);
 		$values = implode(', ', $values);
-
+		var_dump($columns);
+		$query='retert';
  		// Example: INSERT INTO `table` (`col1`, `col2`, `col3`) VALUES ('val1', 'val2', 'val3')
-		$query = sprintf("INSERT INTO `%s` (%s) VALUES (%s)", $table, $columns, $values);
+
+		$query = sprintf('INSERT INTO %s (%s) VALUES (%s)', $table, $columns, $values);
+
 		$result = mysqli_query($this->link, $query);
 		if (!$result) {
 			die(mysqli_error($this->link));
@@ -127,7 +129,7 @@ class db
 		$sets = implode(', ', $sets);
 
 		// UPDATE `table` SET `col1` = 'val1', `col2` = 'val2'
-		$query = sprintf("UPDATE `%s` SET %s WHERE `%s`", $table, $sets, $where);
+		$query = sprintf("UPDATE `%s` SET %s WHERE %s", $table, $sets, $where);
 		$result = mysqli_query($this->link, $query);
 		if (!$result) {
 			die(mysqli_error($this->link));
@@ -160,20 +162,15 @@ class db
 	 */
 	public function select($query)
 	{
-
-		$query=mysqli_real_escape_string($this->link,$query);
-		echo "query= ".$query."<br>";
 		$result = mysqli_query($this->link, $query);
-		echo "result= ".$result."<br>";
 
-
-		/*if (!$result) {
+		if (!$result) {
 			die(mysqli_error($this->link));
 		}
 		$arr = [];
 		while ($row = mysqli_fetch_assoc($result)) {
 			$arr[] = $row;
 		}
-		return $arr;*/
+		return $arr;
 	}
 }
