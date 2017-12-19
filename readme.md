@@ -13,6 +13,11 @@
     + protected          - защищенная часть проекта
         * __с__     - controller
         * __m__     - model
-        * __v__     - view
+            - db  - DataBase
+            - img - картинки
+            - js  - JavaScript
+            - db  - DataBase  
+        * __v__   - view
+            - template - составные части шаблонов
         * __config__- конфигурационные файлы
-            * initial_setup - первоначальные настройки
+            - initial_setup - первоначальные настройкиob_start
