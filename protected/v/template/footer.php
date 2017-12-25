@@ -7,21 +7,38 @@
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
-        integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
-        crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"
-        integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
-        crossorigin="anonymous"></script>
-<script>window.JQuery || document.write('<script src="protected/model/js/jquery.min.js"><\/script>');</script>
+<script src="/protected/m/js/bootstrap.min.js"></script>
+<script src="/protected/m/js/bootstrap.bundle.min.js"></script>
+<script src="/protected/m/js/popper.js"></script>
 
 
-<script type="text/javascript" language="javascript" src="protected/model/js/ajax.js">
-</script>";
+<footer class="container ">
 
+	<div class="row align-center">
+		<div class="col-4 ">
+			<div class="row justify-content-start">
+				<a href="/"><img src="<?= $logo ?>" alt="logo"></a>
+			</div>
+		</div>
+		<div class="col">
+			<div class="row justify-content-center">
+				<img src="/protected/m/img/logo_copyright.png" alt="Copyright">
+				Anatoly Lazarev
+			</div>
+		</div>
+		<div class="col-4 ">
+			<div class="row justify-content-end">
+				<a href="mailto:freeworknet@yandex.ru">
+					<img src="/protected/m/img/logo_email.png" alt="email"></a>
+				<a href="skype:Dilun13?add">
+					<img src="/protected/m/img/logo_skype.png" alt="Skype"></a>
+				<a href="https://github.com/Dilun7525">
+					<img src="/protected/m/img/logo_githab.png"
+						 alt="GitHab"></a>
+			</div>
+		</div>
+	</div>
+</footer>
 
 </body>
 </html>
