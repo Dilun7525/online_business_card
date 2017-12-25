@@ -93,8 +93,7 @@ class db
 
 		$columns = implode(', ', $columns);
 		$values = implode(', ', $values);
-		var_dump($columns);
-		$query='retert';
+
  		// Example: INSERT INTO `table` (`col1`, `col2`, `col3`) VALUES ('val1', 'val2', 'val3')
 
 		$query = sprintf('INSERT INTO %s (%s) VALUES (%s)', $table, $columns, $values);
