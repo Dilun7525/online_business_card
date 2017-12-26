@@ -1,0 +1,162 @@
+.cont-bg {
+
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#636363+0,595959+12,666666+25,474747+39,212121+49,2c2c2c+50,141414+51,111111+60,2b2b2b+76,1c1c1c+91,191919+100&0.95+0,0.88+100 */
+	background: -moz-linear-gradient(top, rgba(99, 99, 99, 0.95) 0%, rgba(89, 89, 89, 0.94) 12%, rgba(102, 102, 102, 0.93) 25%, rgba(71, 71, 71, 0.92) 39%, rgba(33, 33, 33, 0.91) 49%, rgba(44, 44, 44, 0.91) 50%, rgba(20, 20, 20, 0.91) 51%, rgba(17, 17, 17, 0.9) 60%, rgba(43, 43, 43, 0.89) 76%, rgba(28, 28, 28, 0.88) 91%, rgba(25, 25, 25, 0.88) 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top, rgba(99, 99, 99, 0.95) 0%, rgba(89, 89, 89, 0.94) 12%, rgba(102, 102, 102, 0.93) 25%, rgba(71, 71, 71, 0.92) 39%, rgba(33, 33, 33, 0.91) 49%, rgba(44, 44, 44, 0.91) 50%, rgba(20, 20, 20, 0.91) 51%, rgba(17, 17, 17, 0.9) 60%, rgba(43, 43, 43, 0.89) 76%, rgba(28, 28, 28, 0.88) 91%, rgba(25, 25, 25, 0.88) 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom, rgba(99, 99, 99, 0.95) 0%, rgba(89, 89, 89, 0.94) 12%, rgba(102, 102, 102, 0.93) 25%, rgba(71, 71, 71, 0.92) 39%, rgba(33, 33, 33, 0.91) 49%, rgba(44, 44, 44, 0.91) 50%, rgba(20, 20, 20, 0.91) 51%, rgba(17, 17, 17, 0.9) 60%, rgba(43, 43, 43, 0.89) 76%, rgba(28, 28, 28, 0.88) 91%, rgba(25, 25, 25, 0.88) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f2636363', endColorstr='#e0191919', GradientType=0); /* IE6-9 */
+	min-height: 600px;
+}
+
+header, footer {
+	margin: 5px 0;
+	padding: 5px 5px;
+	min-height: 50px;
+	border: 1px solid;
+}
+
+
+
+header img, footer img {
+	width: auto;
+	height: 20px;
+	margin: 0 5px;
+}
+
+.user-img {
+	height: 40px;
+}
+
+
+
+
+/*Ниже хлам
+below stuff
+*/
+
+/*Slider*/
+.slideTheme {
+	width: auto;
+	height: auto;
+	max-height: 150px;
+
+}
+
+.container-fluid .row {
+	max-width: 1000px;
+	margin: 0 auto;
+}
+
+/*Heder && Footer*/
+
+.wrap-images-soc img {
+	width: 100%;
+	height: auto;
+	min-width: 20px;
+	max-width: 100px;
+}
+
+/*Forms*/
+
+.cont-form-bg, .cont-form-bg:focus {
+	background-color: rgba(51, 54, 58, 0.95);
+}
+
+form {
+	padding-top: 30px;
+	padding-left: 15px;
+}
+
+.form-btn-color {
+	color: #fff;
+	background-color: #a43c3d;
+}
+
+.form-btn-color:hover {
+	color: #fff;
+	background-color: #853a3b;
+}
+
+.form-group .form-control {
+	color: #d7d7d7;
+}
+
+.row-btn {
+	padding-top: 30px;
+	padding-bottom: 30px;
+}
+
+.stars {
+	color: #ca0004;
+}
+
+.text-forms {
+	color: #d7d7d7;
+	font-weight: bold;
+}
+
+.wrap-images-form img {
+	width: 100%;
+	height: auto;
+	min-width: 20px;
+	max-width: 100px;
+}
+
+/*Comments*/
+.comments-header {
+	margin: 40px 0;
+	text-align: center;
+	font-size: x-large;
+}
+
+.comment-title {
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	color: #d7d7d7;
+}
+
+.comment-title-bg-1 {
+	background-color: #50596b;
+}
+
+.comment-title-bg-2 {
+	background-color: #78ab59;
+}
+
+.comment-body {
+	margin-bottom: 20px;
+	min-height: 120px;
+	text-align: center;
+	color: #50596b;
+}
+
+.comment-body-bg-1 {
+	background-color: #eaedf2;
+}
+
+.comment-body-bg-2 {
+	background-color: #e3ebdf;
+}
+
+.mail-color {
+	color: #78ab59;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
