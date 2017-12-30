@@ -42,37 +42,26 @@ header img, footer img {
 	-webkit-box-shadow: 5px 5px 5px #111;
 	box-shadow: 5px 5px 5px #111;
 }
-/*MORPH*/
-.morph {
-	-webkit-transition: all 0.5s ease;
-	-moz-transition: all 0.5s ease;
-	-o-transition: all 0.5s ease;
-	-ms-transition: all 0.5s ease;
-	transition: all 0.5s ease;
+
+/*FOCUS*/
+.focus {
+	-webkit-transition: all 200ms ease;
+	-moz-transition: all 200ms ease;
+	-o-transition: all 200ms ease;
+	-ms-transition: all 200ms ease;
+	transition: all 200ms ease;
 }
 
-.morph:hover {
-	border-radius: 50%;
+.focus:hover {
 	-webkit-transform: rotate(360deg);
 	-moz-transform: rotate(360deg);
 	-o-transform: rotate(360deg);
 	-ms-transform: rotate(360deg);
 	transform: rotate(360deg);
-}
-
-/*FOCUS*/
-.focus {
-	-webkit-transition: all 1s ease;
-	-moz-transition: all 1s ease;
-	-o-transition: all 1s ease;
-	-ms-transition: all 1s ease;
-	transition: all 1s ease;
-}
-
-.focus:hover {
-	border: 30px solid #000;
+	border: 10px solid #494949;
 	border-radius: 50%;
 }
+
 
 /*Ниже хлам
 below stuff
