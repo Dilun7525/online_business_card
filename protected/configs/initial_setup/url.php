@@ -9,7 +9,7 @@
  * @return "PATH_IMG"		- изображений
  * @return "PATH_BD_IMG"	- изображений для работы с БД
  * */
-define("PATH_ROOT",		 	$_SERVER['DOCUMENT_ROOT']);
+define("PATH_ROOT",		 	$_SERVER['DOCUMENT_ROOT']."/");
 define("PATH_CONFIGS",	 	'protected/configs/');
 define("PATH_MODEL",	 	"protected/m/");
 define("PATH_VIEW", 	 	"protected/v/");
