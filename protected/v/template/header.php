@@ -2,13 +2,17 @@
 /*
  * получаем начальные настройки сайта
  * */
-require_once $_SERVER['DOCUMENT_ROOT'] .
-	'protected/configs/initial_setup/setup.php';
+/*require_once $_SERVER['DOCUMENT_ROOT'] .
+	'protected/configs/initial_setup/setup.php';*/
+require_once PATH_ROOT.PATH_CONFIGS."initial_setup/setup.php";
 $title = "Home";
-$logo = "/protected/m/img/logo.png";
+$logo = "logo.png";
 $authorization = true;
 $login = "Kuty";
-$fotoUser = "/protected/m/img/22.jpg";
+$fotoUser = "7.jpg";
+$imgMenu  ="7.jpg";
+$descriptionImgMenu="Розняшка";
+
 ?>
 
 
@@ -16,7 +20,7 @@ $fotoUser = "/protected/m/img/22.jpg";
 <html lang="ru">
 <head>
 	<!-- Required meta tags -->
-	<meta charset="utf8">
+	<meta charset="utf-8">
 	<meta name="viewport"
 		  content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -36,7 +40,7 @@ $fotoUser = "/protected/m/img/22.jpg";
 	<div class="row  align-items-center no-gutters">
 		<div class="col-6">
 			<div class="row justify-content-start">
-				<a href="/"><img src="<?= $logo ?>" alt="logo"></a>
+				<a href="/"><img src="<?= PATH_IMG.$logo ?>" alt="logo"></a>
 			</div>
 		</div>
 		<div class="col-6">
@@ -48,7 +52,7 @@ $fotoUser = "/protected/m/img/22.jpg";
 				btn-outline-dark">Регистрация
 					</button>
 				<?php else: ?>
-					<img class="user-img" src="<?= $fotoUser ?>" alt="">
+					<img class="user-img" src="<?= PATH_BD_IMG.$fotoUser ?>" alt="">
 					<button type="button"
 							class="btn btn-outline-success"><?= $login ?></button>
 					<a href="/"><img src="/protected/m/img/user_exit.png"
@@ -59,4 +63,8 @@ $fotoUser = "/protected/m/img/22.jpg";
 	</div>
 </header>
 
+<!--Content-->
+<div class="container">
+	<div class="row">
+		<?php $content?>
 
