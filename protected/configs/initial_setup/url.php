@@ -14,8 +14,7 @@ define("PATH_CONFIGS",	 	'protected/configs/');
 define("PATH_MODEL",	 	"protected/m/");
 define("PATH_VIEW", 	 	"protected/v/");
 define("PATH_CONTROLLER",	"protected/c/");
-define("PATH_BD",		 	"protected/m/db/");
-define("PATH_BD_IMG",	 	"protected/m/db/img/");
+define("PATH_DB_IMG",	 	"protected/m/img/db/");
 define("PATH_IMG",	 	 	"protected/m/img/");
 
 
