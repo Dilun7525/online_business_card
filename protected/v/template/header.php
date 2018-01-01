@@ -29,7 +29,7 @@ require_once PATH_ROOT . PATH_CONFIGS . "initial_setup/setup.php";
 	<div class="row  align-items-center no-gutters">
 		<div class="col-6">
 			<div class="row justify-content-start">
-				<a href="/"><img src="<?= PATH_IMG . $logo ?>" alt="logo"></a>
+				<a href="/"><img src="/<?= PATH_IMG . $logo ?>" alt="logo"></a>
 			</div>
 		</div>
 		<div class="col-6">
@@ -40,7 +40,7 @@ require_once PATH_ROOT . PATH_CONFIGS . "initial_setup/setup.php";
 				btn-outline-dark">Регистрация
 					</button>
 				<?php else: ?>
-					<img class="user-img" src="<?= PATH_DB_IMG . $fotoUser ?>"
+					<img class="user-img" src="/<?= PATH_DB_IMG . $fotoUser ?>"
 						 alt="">
 					<button type="button"
 							class="btn btn-outline-success"><?= $login ?></button>
