@@ -45,19 +45,19 @@ header img, footer img {
 
 /*FOCUS*/
 .focus {
-	-webkit-transition: all 200ms ease;
-	-moz-transition: all 200ms ease;
-	-o-transition: all 200ms ease;
-	-ms-transition: all 200ms ease;
-	transition: all 200ms ease;
+	-webkit-transition: all 100ms ease-out;
+	-moz-transition: all 100ms ease-out;
+	-o-transition: all 100ms ease-out;
+	-ms-transition: all 100ms ease-out;
+	transition: all 100ms ease-out;
 }
 
 .focus:hover {
-	-webkit-transform: rotate(360deg);
+/*	-webkit-transform: rotate(360deg);
 	-moz-transform: rotate(360deg);
 	-o-transform: rotate(360deg);
 	-ms-transform: rotate(360deg);
-	transform: rotate(360deg);
+	transform: rotate(360deg);*/
 	border: 10px solid #494949;
 	border-radius: 50%;
 }
