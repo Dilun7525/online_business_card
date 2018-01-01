@@ -14,6 +14,7 @@ class M_DB
 
 	private static $instance;
 	private static $fileNameBefore;
+
 //endregion
 
 	protected function __construct($fileName)
@@ -95,7 +96,7 @@ class M_DB
 		$columns = implode(', ', $columns);
 		$values = implode(', ', $values);
 
- 		// Example: INSERT INTO `table` (`col1`, `col2`, `col3`) VALUES ('val1', 'val2', 'val3')
+		// Example: INSERT INTO `table` (`col1`, `col2`, `col3`) VALUES ('val1', 'val2', 'val3')
 
 		$query = sprintf('INSERT INTO %s (%s) VALUES (%s)', $table, $columns, $values);
 
@@ -162,6 +163,7 @@ class M_DB
 	 */
 	public function select($query)
 	{
+		$query = mysqli_real_escape_string($this->link, $query);
 		$result = mysqli_query($this->link, $query);
 
 		if (!$result) {
