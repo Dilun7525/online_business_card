@@ -2,7 +2,7 @@
 /**Драйвер для работы с базой данных
  */
 
-class db
+class M_DB
 {
 //region regionVariableS
 	public $link;
@@ -16,7 +16,7 @@ class db
 	private static $fileNameBefore;
 //endregion
 
-	function __construct($fileName)
+	protected function __construct($fileName)
 	{
 		self::$fileNameBefore = $fileName;
 		$strJson = $this->readFile($fileName);
@@ -24,6 +24,7 @@ class db
 		$this->user = $strJson->user;
 		$this->password = $strJson->password;
 		$this->database = $strJson->database;
+		$this->connect();
 	}
 
 	/** Singleton с дополнительной проверкой, поступаемого файла
