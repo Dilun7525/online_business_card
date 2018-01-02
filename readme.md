@@ -13,8 +13,8 @@
     + protected          - защищенная часть проекта
         * __с__     - controller
         * __m__     - model
-            - db  - DataBase
-            - img - картинки
+            - img - изображения
+                - db  - изображения DataBase
             - js  - JavaScript
             - db  - DataBase  
         * __v__   - view
