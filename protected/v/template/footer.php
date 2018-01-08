@@ -27,12 +27,8 @@
 		</div>
 	</div>
 </footer>
-
-<!-- Optional JavaScript -->
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="/protected/m/js/bootstrap.js"></script>
-<script src="/protected/m/js/bootstrap.bundle.js"></script>
-<script src="/protected/m/js/popper.js"></script>
-
+<?php
+/**загрузка скриптов*/
+require_once PATH_VIEW. 'template/setup_footer_script.php';?>
 </body>
 </html>
