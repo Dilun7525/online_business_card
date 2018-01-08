@@ -1,7 +1,8 @@
 <?php
 /**получаем начальные настройки сайта
  */
-require_once PATH_ROOT . PATH_CONFIGS . "initial_setup/setup.php";
+require_once $_SERVER['DOCUMENT_ROOT'] .
+	'protected/configs/initial_setup/setup.php';
 ?>
 
 
@@ -35,7 +36,7 @@ require_once PATH_ROOT . PATH_CONFIGS . "initial_setup/setup.php";
 		<div class="col-6">
 			<div class="row justify-content-end align-items-center">
 				<?php if (!$authorization): ?>
-					<img src="/protected/m/img/user.png" alt="logo">
+					<img src="/<?= PATH_IMG?>user.png" alt="logo">
 					<button type="button" class="btn
 				btn-outline-dark">Регистрация
 					</button>
@@ -44,7 +45,7 @@ require_once PATH_ROOT . PATH_CONFIGS . "initial_setup/setup.php";
 						 alt="">
 					<button type="button"
 							class="btn btn-outline-success"><?= $login ?></button>
-					<a href="/"><img src="/protected/m/img/user_exit.png"
+					<a href="/"><img src="/<?= PATH_IMG?>user_exit.png"
 									 alt="logo"></a>
 				<?php endif; ?>
 			</div>
