@@ -67,13 +67,13 @@ header img, footer img {
 }
 
 .btn-404-margin{
-	margin-top: 50px;
+	margin-top: 100px;
 }
 .btn-404 {
 	-webkit-box-shadow: 5px 5px 5px #111;
 	box-shadow: 5px 5px 5px #111;
 	width: 300px;
-	height: 40px;
+	height: 50px;
 	border: 2px solid #625A4E;
 	border-radius: 5px;
 	font-size: x-large;
@@ -95,8 +95,9 @@ header img, footer img {
 .btn-404:hover {
 	margin-top: -5px;
 	text-decoration: none;
-	width: 320px;
-	height: 50px;
+	width: 360px;
+	height: 70px;
+	font-size: xx-large;
 
 }
 .bg-404 a:link {
