@@ -1,1 +1,1 @@
-{"host":"localhost", "user":"Tr", "password":"xHVVWCRd4mAAqWrh", "database":"Tr_demo_site"}
+{"host":"localhost", "user":"Tr", "password":"Ybdj9C2Y5UuFWQmj", "database":"Tr_demo_site"}
