@@ -7,37 +7,30 @@
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f2636363', endColorstr='#e0191919', GradientType=0); /* IE6-9 */
 	min-height: 600px;
 }
-
 header, footer {
 	margin: 5px 0;
 	padding: 5px 5px;
 	min-height: 50px;
 	border: 1px solid;
 }
-
 header img, footer img {
 	width: auto;
 	height: 20px;
 	margin: 0 5px;
 }
-
 .user-img {
 	height: 40px;
 }
-
 .img-size {
 	width: 200px;
 	height: 200px;
 }
-
 .pic {
 	border: 3px solid #6f6f6f;
-
 	height: 200px;
 	width: 200px;
 	margin: 20px;
 	overflow: hidden;
-
 	-webkit-box-shadow: 5px 5px 5px #111;
 	box-shadow: 5px 5px 5px #111;
 }
@@ -50,7 +43,6 @@ header img, footer img {
 	-ms-transition: all 100ms ease-out;
 	transition: all 100ms ease-out;
 }
-
 .focus:hover {
 	/*	-webkit-transform: rotate(360deg);
 		-moz-transform: rotate(360deg);
@@ -65,7 +57,6 @@ header img, footer img {
 .bg-404 {
 	background: url("/protected/m/img/404_bg.png") no-repeat top, center;
 }
-
 .btn-404-margin{
 	margin-top: 100px;
 }
@@ -91,15 +82,48 @@ header img, footer img {
 	-ms-transition: all 100ms ease-out;
 	transition: all 100ms ease-out;
 }
-
 .btn-404:hover {
 	margin-top: -5px;
 	text-decoration: none;
 	width: 360px;
 	height: 70px;
 	font-size: xx-large;
-
 }
 .bg-404 a:link {
 	text-decoration: none;
+}
+
+/*Card deck*/
+.card-deck{
+	height: 400px;
+	width: 400px;
+	position: relative;
+	margin-top: 50px;
+	overflow: hidden;
+
+}
+.layer{
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+
+.card1{
+	background: #1e7e34;
+	margin-top: -20px;
+	z-index: 50;
+	opacity: 0.8;
+}
+.card2{
+	background: #7e0800;
+	margin-top: -10px;
+	opacity: 0.7;
+	z-index: 49;
+}
+.card3{
+	background: #ff00e5;
+	opacity: 0.6;
+	z-index: 48;
 }
