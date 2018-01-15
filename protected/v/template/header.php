@@ -2,7 +2,7 @@
 /**загрузка заголовка*/
 require_once $_SERVER['DOCUMENT_ROOT'] . 'protected/v/template/setup_head.php';?>
 
-<body class="cont-bg">
+<body> <!--class="cont-bg"-->
 <header class="container">
 	<div class="row  align-items-center no-gutters">
 		<div class="col-6">
