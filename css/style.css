@@ -94,6 +94,9 @@ header img, footer img {
 }
 
 /*Card deck*/
+.size{
+	height: 8000px;
+}
 .card-deck{
 	height: 400px;
 	width: 400px;
@@ -102,6 +105,8 @@ header img, footer img {
 	overflow: hidden;
 
 }
+
+
 .layer{
 	height: 100%;
 	width: 100%;
@@ -112,13 +117,13 @@ header img, footer img {
 
 .card1{
 	background: #1e7e34;
-	margin-top: -20px;
+	margin-top: 0px;
 	z-index: 50;
 	opacity: 0.8;
 }
 .card2{
 	background: #7e0800;
-	margin-top: -10px;
+	margin-top: 0px;
 	opacity: 0.7;
 	z-index: 49;
 }
