@@ -4,7 +4,7 @@
 
 class M_DB
 {
-//region regionVariableS
+    //region regionVariableS
 	public $link;
 
 	private $host = '';
@@ -15,7 +15,7 @@ class M_DB
 	private static $instance;
 	private static $fileNameBefore;
 
-//endregion
+   //endregion
 
 	protected function __construct($fileName)
 	{
@@ -163,7 +163,7 @@ class M_DB
 	 */
 	public function select($query)
 	{
-		$query = mysqli_real_escape_string($this->link, $query);
+		//$query = mysqli_real_escape_string($this->link, $query);
 		$result = mysqli_query($this->link, $query);
 
 		if (!$result) {
