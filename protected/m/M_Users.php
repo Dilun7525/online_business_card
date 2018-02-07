@@ -167,7 +167,7 @@ class M_Users
 		setcookie('login', '', time() - 1, "/");
 		setcookie('password', '', time() - 1, "/");
 		unset($_COOKIE['login']);
-		unset($_COOKIE['password']);
+		unset($_COOKIE['pass']);
 		unset($_SESSION['sid']);
 		$this->sid = null;
 		$this->uid = null;
@@ -232,7 +232,7 @@ class M_Users
 			}
 		}
 
-		// Нет сессии? Ищем логин и hesh пароля в куках.
+		// Нет сессии? Ищем логин и hash пароля в куках.
 		// Т.е. пробуем переподключиться.
 
 		if($sid == null && isset($_COOKIE['login'])) {
