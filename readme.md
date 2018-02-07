@@ -16,7 +16,6 @@
             - img - изображения
                 - db  - изображения DataBase
             - js  - JavaScript
-            - db  - DataBase  
         * __v__   - view
             - template - составные части шаблонов
         * __config__- конфигурационные файлы
