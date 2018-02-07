@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: localhost
--- Время создания: Фев 07 2018 г., 21:21
+-- Время создания: Фев 07 2018 г., 22:34
 -- Версия сервера: 10.1.29-MariaDB
 -- Версия PHP: 7.2.0
 
@@ -40,7 +40,11 @@ CREATE TABLE `menuPageSite` (
 --
 
 INSERT INTO `menuPageSite` (`id`, `img_file`, `description`, `link_page`) VALUES
-(1, '7.jpg', 'example', '/');
+(2, 'menu_landing.png', 'Лендинг', '/landing'),
+(3, 'menu_pars.png', 'Парсинг', '/'),
+(4, 'menu_snake.png', 'Змейка', '/'),
+(5, 'menu_page404.png', 'Страница 404', '/error_404'),
+(6, 'menu_admin.png', 'Админка', '/');
 
 -- --------------------------------------------------------
 
@@ -81,16 +85,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `id_user`, `sid`, `time_start`, `time_last`) VALUES
-(16, 1, 'y1it1BCsfqeVd7Re', '2018-02-07 20:53:35', '2018-02-07 21:04:55'),
-(17, 2, 'vnrSXsDKnVdi4cxO', '2018-02-07 21:05:09', '2018-02-07 21:08:37'),
-(18, 2, 'wyvGpuEnrCnYgQ8S', '2018-02-07 21:08:48', '2018-02-07 21:10:17'),
-(19, 2, 'dbiEkQMpBtCzqlKE', '2018-02-07 21:10:28', '2018-02-07 21:10:28'),
-(20, 2, 'q2OxjkSNiC9uKhuJ', '2018-02-07 21:10:29', '2018-02-07 21:10:37'),
-(21, 2, 'oz8JHvnIY6tfuPQ2', '2018-02-07 21:10:53', '2018-02-07 21:11:35'),
-(22, 1, '9arAUIgroRxBYhpB', '2018-02-07 21:11:44', '2018-02-07 21:11:48'),
-(23, 2, 'ISihmqgKXHSv0Ame', '2018-02-07 21:12:00', '2018-02-07 21:12:00'),
-(24, 2, 'RVKSRZ3uMn3AFhYI', '2018-02-07 21:12:00', '2018-02-07 21:15:24'),
-(25, 1, 'Vz4zbCgVDqaiLgvD', '2018-02-07 21:15:32', '2018-02-07 21:15:42');
+(27, 1, 'kMe0fjmnoDjiydSN', '2018-02-07 22:32:31', '2018-02-07 22:33:42');
 
 -- --------------------------------------------------------
 
@@ -164,7 +159,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT для таблицы `menuPageSite`
 --
 ALTER TABLE `menuPageSite`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT для таблицы `role`
@@ -176,7 +171,7 @@ ALTER TABLE `role`
 -- AUTO_INCREMENT для таблицы `sessions`
 --
 ALTER TABLE `sessions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT для таблицы `users`
