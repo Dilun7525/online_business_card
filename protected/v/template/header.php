@@ -12,19 +12,28 @@ require_once $_SERVER['DOCUMENT_ROOT'] . 'protected/v/template/setup_head.php';?
 		</div>
 		<div class="col-6">
 			<div class="row justify-content-end align-items-center">
-				<?php if (!$authorization): ?>
-					<img src="/<?= PATH_IMG?>user.png" alt="logo">
-					<button type="button" class="btn
-				btn-outline-dark">Регистрация
-					</button>
-				<?php else: ?>
+
+				<?php if ($authorization): ?>
 					<img class="user-img" src="/<?= PATH_DB_IMG . $fotoUser ?>"
-						 alt="">
-					<button type="button"
-							class="btn btn-outline-success"><?= $login ?></button>
-					<a href="/"><img src="/<?= PATH_IMG?>user_exit.png"
-									 alt="logo"></a>
+						 alt="<?=$login ?>">
+
+					<div class="marginDiv">
+						<span><a href=""><?=	$login ?></a></span>
+					</div>
+
+					<a href="/auth/exit_user">
+						<img src="/<?= PATH_IMG?>user_exit.png" alt="logo">
+					</a>
+
+				<?php else: ?>
+					<img src="/<?= PATH_IMG?>user.png" alt="logo">
+
+					<div class="marginDiv">
+						<span><a href="/auth/login">Регистрация</a></span>
+					</div>
+
 				<?php endif; ?>
+
 			</div>
 		</div>
 	</div>
