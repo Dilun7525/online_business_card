@@ -29,7 +29,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . 'protected/v/template/setup_head.php';?
 					<img src="/<?= PATH_IMG?>user.png" alt="logo">
 
 					<div class="marginDiv">
-						<span><a href="/auth/login">Регистрация</a></span>
+						<span><a href="/auth/login">Авторизация</a></span>
 					</div>
 
 				<?php endif; ?>

@@ -238,7 +238,7 @@ class M_Users
 		if($sid == null && isset($_COOKIE['login'])) {
 			$user = $this->getUser($_COOKIE['login'], "login");
 
-			if($user != null && $user['pass'] == $_COOKIE['password'])
+			if($user != null && $user['pass'] == $_COOKIE['pass'])
 				$sid = $this->OpenSession($user['id']);
 		}
 
@@ -470,8 +470,8 @@ class M_Users
 			$expire = time() + 3600 * 24 * 100;
 			setcookie('login', $this->user["login"],
 				$expire, $this->pathCookie, $this->domainCookie);
-			setcookie('password', $this->user["pass"],
-				$expire, $expire, $this->pathCookie, $this->domainCookie);
+			setcookie('pass', $this->user["pass"],
+				$expire, $this->pathCookie, $this->domainCookie);
 		}
 
 		// открываем сессию и запоминаем SID
