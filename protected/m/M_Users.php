@@ -25,12 +25,13 @@ class M_Users
 		"first_name" => "",
 		"middle_name" => "",
 		"role" => "",
-		"img" => "",
+		"foto_user" => "",
 	];
 	public $passportUser = [         // данные, необходимые для других классов
 		"authorization" => false,    // состояние авторизации
 		"login" => "",
 		"trueAdmin" => false,        //  пользователь - это администратор?
+		"foto_user" => "",
 	];
 
 	private $rememberUser = false;  //Запоминать пользователя?
@@ -49,6 +50,7 @@ class M_Users
 	{
 		$this->driverDB = M_DB::getInstance(PATH_CONFIGS . "db_install.txt");
 		$this->login();
+		$this->clearSessions();
 	}
 
 	/**
@@ -60,7 +62,7 @@ class M_Users
 	public function getUser($valueField, $searchOnField = "id")
 	{
 		$format = "SELECT users.id, login,  pass,  email, " .
-			"surname,  first_name,  middle_name, role.role " .
+			"surname,  first_name,  middle_name, role.role, foto_user " .
 			"FROM users INNER JOIN role ON users.role = role.id " .
 			"WHERE users.%s = '%s'";
 
@@ -79,7 +81,7 @@ class M_Users
 	public function getUsers($sortColumn = "id", $sortType = "ASC")
 	{
 		$format = "SELECT users.id, login,  pass,  email, " .
-			"surname,  first_name,  middle_name, role.role " .
+			"surname,  first_name,  middle_name, role.role, foto_user " .
 			"FROM users INNER JOIN role ON users.role = role.id " .
 			"ORDER BY %s %s";
 
@@ -145,9 +147,15 @@ class M_Users
 		}
 
 		$this->user = $this->getUser($uid);
+		$this->fillingPassportUser();
+	}
 
+	/**Заполнение паспорта пользователя*/
+    protected function fillingPassportUser (){
 		$this->passportUser["authorization"] = true;
 		$this->passportUser["login"] = $this->user["login"];
+		$this->passportUser["foto_user"] = $this->user["foto_user"];
+
 		if($this->user["role"] === "администратор") {
 			$this->passportUser["trueAdmin"] = true;
 		}
@@ -191,7 +199,7 @@ class M_Users
 			return null;
 
 		// Если нашли - запоминим ее.
-		$this->uid = $result[0]['id'];
+		$this->uid = $result[0]['id_user'];
 		return $this->uid;
 	}
 
@@ -206,7 +214,7 @@ class M_Users
 			return $this->sid;
 
 		// Ищем SID в сессии.
-		$sid = $_SESSION['sid'];
+		$sid = (!empty($_SESSION['sid']))?$_SESSION['sid']:null;
 
 		// Если нашли, попробуем обновить time_last в базе.
 		// Заодно и проверим, есть ли сессия там.
@@ -455,6 +463,7 @@ class M_Users
 	{
 		$this->user = $this->getUser($idUser);
 		$this->uid = $idUser;
+		$this->fillingPassportUser();
 
 		// запоминаем имя и пароль
 		if($this->rememberUser) {
