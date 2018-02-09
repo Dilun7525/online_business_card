@@ -25,13 +25,13 @@ class M_Users
 		"first_name" => "",
 		"middle_name" => "",
 		"role" => "",
-		"foto_user" => "",
+		"photo_user" => "",
 	];
 	public $passportUser = [         // данные, необходимые для других классов
 		"authorization" => false,    // состояние авторизации
 		"login" => "",
 		"trueAdmin" => false,        //  пользователь - это администратор?
-		"foto_user" => "",
+		"userPhoto" => "",
 	];
 
 	private $rememberUser = false;  //Запоминать пользователя?
@@ -62,7 +62,7 @@ class M_Users
 	public function getUser($valueField, $searchOnField = "id")
 	{
 		$format = "SELECT users.id, login,  pass,  email, " .
-			"surname,  first_name,  middle_name, role.role, foto_user " .
+			"surname,  first_name,  middle_name, role.role, photo_user " .
 			"FROM users INNER JOIN role ON users.role = role.id " .
 			"WHERE users.%s = '%s'";
 
@@ -81,7 +81,7 @@ class M_Users
 	public function getUsers($sortColumn = "id", $sortType = "ASC")
 	{
 		$format = "SELECT users.id, login,  pass,  email, " .
-			"surname,  first_name,  middle_name, role.role, foto_user " .
+			"surname,  first_name,  middle_name, role.role, photo_user " .
 			"FROM users INNER JOIN role ON users.role = role.id " .
 			"ORDER BY %s %s";
 
@@ -154,7 +154,7 @@ class M_Users
     protected function fillingPassportUser (){
 		$this->passportUser["authorization"] = true;
 		$this->passportUser["login"] = $this->user["login"];
-		$this->passportUser["foto_user"] = $this->user["foto_user"];
+		$this->passportUser["userPhoto"] = $this->user["photo_user"];
 
 		if($this->user["role"] === "администратор") {
 			$this->passportUser["trueAdmin"] = true;

@@ -14,11 +14,11 @@ require_once $_SERVER['DOCUMENT_ROOT'] . 'protected/v/template/setup_head.php';?
 			<div class="row justify-content-end align-items-center">
 
 				<?php if ($authorization): ?>
-					<img class="user-img" src="/<?= PATH_DB_IMG . $fotoUser ?>"
+					<img class="user-img" src="/<?= PATH_DB_IMG . $userPhoto ?>"
 						 alt="<?=$login ?>">
 
 					<div class="marginDiv">
-						<span><a href=""><?=	$login ?></a></span>
+						<span><a href="/users"><?=	$login ?></a></span>
 					</div>
 
 					<a href="/auth/exit_user">
