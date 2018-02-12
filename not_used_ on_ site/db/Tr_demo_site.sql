@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: localhost
--- Время создания: Фев 07 2018 г., 22:34
+-- Время создания: Фев 12 2018 г., 06:58
 -- Версия сервера: 10.1.29-MariaDB
 -- Версия PHP: 7.2.0
 
@@ -85,7 +85,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `id_user`, `sid`, `time_start`, `time_last`) VALUES
-(27, 1, 'kMe0fjmnoDjiydSN', '2018-02-07 22:32:31', '2018-02-07 22:33:42');
+(37, 1, 'xbZvAfpmVoEhKATO', '2018-02-09 11:13:39', '2018-02-12 06:37:42');
 
 -- --------------------------------------------------------
 
@@ -102,17 +102,16 @@ CREATE TABLE `users` (
   `first_name` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `middle_name` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `role` tinyint(4) NOT NULL DEFAULT '2',
-  `foto_user` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT 'user.png'
+  `photo_user` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT 'user.png'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='пользователи';
 
 --
 -- Дамп данных таблицы `users`
 --
 
-INSERT INTO `users` (`id`, `login`, `pass`, `email`, `surname`, `first_name`, `middle_name`, `role`, `foto_user`) VALUES
+INSERT INTO `users` (`id`, `login`, `pass`, `email`, `surname`, `first_name`, `middle_name`, `role`, `photo_user`) VALUES
 (1, 'admin', '$2y$10$imSEtgKbg.xpkev98JhG.ei6U1jZjSmvbqcy4Qu31.GLdhhlqeZXO', 'admin@admin.ru', 'Админов', 'Админ', 'Админович', 1, 'user.png'),
 (2, 'user1', '$2y$10$imSEtgKbg.xpkev98JhG.ei6U1jZjSmvbqcy4Qu31.GLdhhlqeZXO', 'user@user.ru', 'Юзверь', 'Юзер', 'Юзерович', 3, 'user.png'),
-(7, 'testPro', '$2y$10$imSEtgKbg.xpkev98JhG.ei6U1jZjSmvbqcy4Qu31.GLdhhlqeZXO', 'testPro@testPro.ru', 'testPro', 'testPro', 'testPro', 3, 'user.png'),
 (8, 'test2', '$2y$10$imSEtgKbg.xpkev98JhG.ei6U1jZjSmvbqcy4Qu31.GLdhhlqeZXO', 'test@test.ru', 'Тестов', 'Тест', 'Тестович', 2, 'user.png'),
 (9, 'admin2', '$2y$10$imSEtgKbg.xpkev98JhG.ei6U1jZjSmvbqcy4Qu31.GLdhhlqeZXO', 'admin2@admin2.ru', 'Админов2', 'Админ2', 'Админович2', 1, 'user.png'),
 (11, 'UserTest', '$2y$10$imSEtgKbg.xpkev98JhG.ei6U1jZjSmvbqcy4Qu31.GLdhhlqeZXO', 'user@user.ru', 'Петров', 'Петр', 'Петрович', 2, 'user.png'),
@@ -171,7 +170,7 @@ ALTER TABLE `role`
 -- AUTO_INCREMENT для таблицы `sessions`
 --
 ALTER TABLE `sessions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT для таблицы `users`
