@@ -14,7 +14,7 @@ class M_Users
 	private $sid;                  // идентификатор текущей сессии
 	private $timeLiveSid = 60 * 20;// время существования ссесии
 	private $uid;                  // идентификатор текущего пользователя
-	private $pathCookie = "/";	   // место деиствия куков
+	private $pathCookie = "/";       // место деиствия куков
 	private $domainCookie;
 	private $user = [              // авторизованный пользователь
 		"id" => "",
@@ -32,6 +32,7 @@ class M_Users
 		"login" => "",
 		"trueAdmin" => false,        //  пользователь - это администратор?
 		"userPhoto" => "",
+		"userId" => "",
 	];
 
 	private $rememberUser = false;  //Запоминать пользователя?
@@ -76,14 +77,20 @@ class M_Users
 	 * @param string $sortColumn - название колонки, по которой сортируется
 	 * таблица
 	 * @param string $sortType = "ASC" || "DESC"
-	 * @return  $users|null
+	 * @param null   $where - дополнительное условие
+	 * @return null $users|null
 	 */
-	public function getUsers($sortColumn = "id", $sortType = "ASC")
+	public function getUsers($sortColumn = "id",
+							 $sortType = "ASC",
+							 $where = null)
 	{
 		$format = "SELECT users.id, login,  pass,  email, " .
 			"surname,  first_name,  middle_name, role.role, photo_user " .
-			"FROM users INNER JOIN role ON users.role = role.id " .
-			"ORDER BY %s %s";
+			"FROM users INNER JOIN role ON users.role = role.id ";
+		if(!is_null($where)) {
+			$format .= " " . $where . " ";
+		}
+		$format .= "ORDER BY %s %s";
 
 		$query = sprintf($format, $sortColumn, $sortType);
 		$result = $this->driverDB->Select($query);
@@ -151,10 +158,12 @@ class M_Users
 	}
 
 	/**Заполнение паспорта пользователя*/
-    protected function fillingPassportUser (){
+	protected function fillingPassportUser()
+	{
 		$this->passportUser["authorization"] = true;
 		$this->passportUser["login"] = $this->user["login"];
 		$this->passportUser["userPhoto"] = $this->user["photo_user"];
+		$this->passportUser["userId"] = $this->user["id"];
 
 		if($this->user["role"] === "администратор") {
 			$this->passportUser["trueAdmin"] = true;
@@ -214,7 +223,7 @@ class M_Users
 			return $this->sid;
 
 		// Ищем SID в сессии.
-		$sid = (!empty($_SESSION['sid']))?$_SESSION['sid']:null;
+		$sid = (!empty($_SESSION['sid'])) ? $_SESSION['sid'] : null;
 
 		// Если нашли, попробуем обновить time_last в базе.
 		// Заодно и проверим, есть ли сессия там.
@@ -342,12 +351,14 @@ class M_Users
 		return $cost;
 	}
 
-	/**Валидация введенных данных в регистрационной форме
+	/**
+	 * Валидация введенных данных в регистрационной форме
 	 * Также проводиться проверка на отсутствие пользователя с указанным
 	 * именем или email
+	 * @param bool $update -
 	 * @return array [$trueError, $result]
 	 */
-	public function validateRegistrationForm()
+	public function validateRegistrationForm($update = false)
 	{
 		$result = '';
 		$trueError = false;
@@ -431,6 +442,42 @@ class M_Users
 		return [$trueError, $user["id"]];
 
 	}
+
+	/**Очистка входящих данных от возможных аттак
+	 * @param string $value
+	 * @return string
+	 */
+	public function cleanString($value = "")
+	{
+		$value = trim($value);
+		$value = stripslashes($value);
+		$value = strip_tags($value);
+		$value = htmlspecialchars($value);
+
+		//Выражение начинается с Заглавной буквы?
+		$oneUcFirst =false;
+		$oneChar=IntlChar::ord($value[0]);
+		if($oneChar>65 && $oneChar<90){
+			$oneUcFirst=true;
+		}
+
+		$value = strtolower($value);
+		//Удаление из строки опасных выражений
+		$expressions= U_List_prohibited_expressions::expressions;
+		foreach ($expressions as $k){
+			$value=str_replace($k,"",$value);
+		}
+		//удаляем символ ";"
+		$value=str_replace(";","",$value);
+
+		//Преобразуем первый символ в верхний регистр
+		if ($oneUcFirst){
+			$value=ucfirst($value);
+		}
+
+		return $value;
+	}
+
 
 	/**
 	 * Вставка пользователя в БД
@@ -519,9 +566,35 @@ class M_Users
 		return (!empty($result)) ? $result : null;
 	}
 
+	/**
+	 * Активация сортировки таблицы
+	 * sortColumn    - login, email, surname, first_name, middle_name, role
+	 * sortType        - ASC или DESC
+	 */
+	public function activationSort()
+	{
+		if(empty($_SESSION["switchSorting"] ||
+			is_bool($_SESSION["switchSorting"]))) {
+			$_SESSION["switchSorting"] = false;
+		}
+
+		if(empty($_SESSION["sortType"])) {
+			$_SESSION["sortType"] = "ASC";
+		}
+
+		if(empty($_SESSION["sortColumn"])) {
+			$_SESSION["sortColumn"] = null;
+		}
+	}
+
+
 	/**Переключатель направления сортировки таблицы*/
 	public function switchSortType()
 	{
+		if(empty($_SESSION["switchSorting"])) {
+			$this->activationSort();
+		}
+
 		if($_SESSION["switchSorting"]) {
 			$_SESSION["switchSorting"] = false;
 			$_SESSION["sortType"] = "ASC";
