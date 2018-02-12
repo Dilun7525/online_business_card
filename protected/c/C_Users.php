@@ -1,21 +1,32 @@
 <?php
 
 /**Класс домашней страницы*/
-class C_Home extends C_Base
+class C_Users extends C_Base
 {
-	protected $modelUsers;
-	protected $sortColumn;//login, email, surname, first_name, middle_name, role
-	protected $sortType;  //ASC или DESC
+//region regionVariableS
+ 	/**
+ 	 * Переменные из базового класса:
+ 	 * $modelUser;	  // модель пользователей
+ 	 * $title;        // заголовок страницы
+ 	 * $needLogin;    // необходима ли авторизация
+ 	 * $authorization;// состояние авторизации
+ 	 * $userLogin;    // авторизованный пользователь
+ 	 * $userPhoto;    // фото пользователя
+ 	 * $trueAdmin;    // пользователь - это администратор?
+ 	 * $dataTemplate; // массив шаблонов:
+ 	 */
+
+
 	protected $hiddenErrorDiv = '';
 	protected $resultError;
 	protected $trueError;
 
+	//endregion regionVariableS
 
 	public function __construct()
 	{
 		parent::__construct();
-		$this->modelUsers = M_Users::getInstance();
-		$this->updateVarFromSESSION();
+		$this->modelUser->activationSort();
 	}
 
 	public function before()
@@ -23,38 +34,35 @@ class C_Home extends C_Base
 		$this->needLogin = true;
 		parent::before();
 
-		$this->title .= "Home";
+		$this->title .= "Пользователи";
 	}
 
-	/**Обновление необходимых переменных в сесии*/
-	protected function updateVarFromSESSION()
-	{
-		parent::updateVarFromSESSION();
-		$this->sortType = !empty($_SESSION["sortType"])
-			? $_SESSION["sortType"] : null;
-		$this->sortColumn = !empty($_SESSION["sortColumn"])
-			? $_SESSION["sortColumn"] : null;
-	}
 
-	public function action_index()
+	/**Отображение списка пользователей*/
+	public function action_list_users()
 	{
-		if(!is_null($this->sortColumn) && is_null($this->sortType)) {
-			$dataBD = $this->modelUsers->getUsers($this->sortColumn);
-		} elseif(!is_null($this->sortColumn) && !is_null($this->sortType)) {
-			$dataBD = $this->modelUsers->getUsers($this->sortColumn, $this->sortType);
+		$sortColumn=$_SESSION["sortColumn"];
+		$sortType=$_SESSION["sortType"]	;
+
+		//Блок определения сортировки таблицы
+		if(!is_null($sortColumn) && !is_null($sortType)) {
+			$dataBD = $this->modelUser->getUsers($sortColumn, $sortType);
 		} else {
-			$dataBD = $this->modelUsers->getUsers();
+			$dataBD = $this->modelUser->getUsers();
 		}
 
 		//Подготовка Header
 		$this->dataTemplate = [[
 			"template" => PATH_TEMPLATE . "header.php",
 			"title" => $this->title,
-			"login" => $this->user,
-			"id" => $this->idUser,]];
+			"logo" => "logo.png",
+			"authorization" => $this->authorization,
+			"login" => $this->userLogin,
+			"userPhoto" => $this->userPhoto,
+		]];
+
 
 		//Подготовка таблицы
-
 		$i = 1;
 		$iEnd = count($dataBD);
 		foreach ($dataBD as $value) {
@@ -74,17 +82,21 @@ class C_Home extends C_Base
 			++$i;
 		}
 
+
 		//Подготовка Footer
 		$this->dataTemplate[] = [
-			"template" => PATH_TEMPLATE . "footer.php",];
+			"template" => PATH_TEMPLATE . "footer.php",
+			"logo" => "logo.png",
+		];
+
+
 	}
 
 	protected function sorting($sortColumn)
 	{
-		$this->sortColumn = $sortColumn;
-		$_SESSION["sortColumn"] = "login";
-		$this->modelUsers->switchSortType();
-		$this->redirect("/");
+		$_SESSION["sortColumn"] = $sortColumn;
+		$this->modelUser->switchSortType();
+		$this->redirect("/users/list_users");
 	}
 
 	public function action_sort_login()
@@ -106,21 +118,23 @@ class C_Home extends C_Base
 	{
 		$selfIdUsers = false;//это профиль зарегистрированного пользователя?
 		$showUserID = $this->params[0];
-		$user = $this->modelUsers->getUser($showUserID);
+		$user = $this->modelUser->getUser($showUserID);
 
-		if($this->idUser === $showUserID) {
+		if($this->userLogin === $showUserID) {
 			$selfIdUsers = true;
 		}
 		$user["selfIdUsers"] = $selfIdUsers;
-		$user["roles"] =$this->modelUsers->getAllRole();
+		$user["roles"] =$this->modelUser->getAllRole();
 
 		//Подготовка Header
-		$this->dataTemplate[] = [
+		$this->dataTemplate = [[
 			"template" => PATH_TEMPLATE . "header.php",
 			"title" => $this->title,
-			"login" => $this->user,
-			"id" => $this->idUser,
-		];
+			"logo" => "logo.png",
+			"authorization" => $this->authorization,
+			"login" => $this->userLogin,
+			"userPhoto" => $this->userPhoto,
+		]];
 
 		$this->dataTemplate[] = $this->templateEdit($user);
 	}
@@ -157,7 +171,7 @@ class C_Home extends C_Base
 	public function action_edit_profile()
 	{
 		$showUserID = $this->params[0];
-		$result = $this->modelUsers->validateRegistrationForm();
+		$result = $this->modelUser->validateRegistrationForm();
 		$this->trueError = $result[0];
 
 		if($this->trueError) {
@@ -166,7 +180,7 @@ class C_Home extends C_Base
 		} else {
 			$dateForm = $result[1];
 			$dateForm["id"] = $showUserID;
-			$result = $this->modelUsers->editProfile($dateForm);
+			$result = $this->modelUser->editProfile($dateForm);
 
 			if(is_null($result)) {
 				$this->trueError = true;
@@ -185,13 +199,13 @@ class C_Home extends C_Base
 	public function action_delete_profile()
 	{
 		$showUserID = $this->params[0];
-		$this->modelUsers->deleteProfile($showUserID);
+		$this->modelUser->deleteProfile($showUserID);
 		$this->redirect("/");
 	}
 
 	public function action_create_profile()
 	{
-		$result = $this->modelUsers->validateRegistrationForm();
+		$result = $this->modelUser->validateRegistrationForm();
 		$this->trueError = $result[0];
 
 		if($this->trueError) {
@@ -201,7 +215,7 @@ class C_Home extends C_Base
 			//$this->update_profile($result[1]);
 			$dateForm = $result[1];
 
-			$result = $this->modelUsers->registrationUser($dateForm);
+			$result = $this->modelUser->registrationUser($dateForm);
 
 			if(is_null($result)) {
 				$this->trueError = true;
