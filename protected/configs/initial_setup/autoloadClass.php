@@ -11,5 +11,10 @@ spl_autoload_register(function ($classname){
 				include_once(PATH_MODEL . "$classname.php");
 			}
 			break;
+			case 'U':
+			if (file_exists(PATH_CONFIGS . "$classname.php")) {
+				include_once(PATH_CONFIGS . "$classname.php");
+			}
+			break;
 	}
 });
