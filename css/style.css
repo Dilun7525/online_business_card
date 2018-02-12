@@ -49,7 +49,7 @@ header img, footer img {
 		-o-transform: rotate(360deg);
 		-ms-transform: rotate(360deg);
 		transform: rotate(360deg);*/
-	border: 10px solid #494949;
+	border: 5px solid rgba(20, 255, 0, 0.6);
 	border-radius: 50%;
 }
 
@@ -189,3 +189,61 @@ body a:link {
 	height: 22px;
 	width: 30px;
 }
+
+/*+++++++++++++++++++++++++++++++++++++++++++++++++*/
+/*Этот блок тестовый и на готовом проекте удалиться*/
+.pic-red {
+	border: 3px solid #ff0900;
+	height: 200px;
+	width: 200px;
+	margin: 20px;
+	overflow: hidden;
+	-webkit-box-shadow: 5px 5px 5px #b00800;
+	box-shadow: 5px 5px 5px #b00800;
+}
+
+.pic-green {
+	border: 3px solid #1ac900;
+	height: 200px;
+	width: 200px;
+	margin: 20px;
+	overflow: hidden;
+	-webkit-box-shadow: 5px 5px 5px #116f00;
+	box-shadow: 5px 5px 5px #116f00;
+}
+
+/*FOCUS*/
+.focus-red {
+	-webkit-transition: all 100ms ease-out;
+	-moz-transition: all 100ms ease-out;
+	-o-transition: all 100ms ease-out;
+	-ms-transition: all 100ms ease-out;
+	transition: all 100ms ease-out;
+}
+.focus-red:hover {
+	/*	-webkit-transform: rotate(360deg);
+		-moz-transform: rotate(360deg);
+		-o-transform: rotate(360deg);
+		-ms-transform: rotate(360deg);
+		transform: rotate(360deg);*/
+	border: 5px solid rgba(198, 8, 0, 0.73);
+	border-radius: 50%;
+}
+/*FOCUS*/
+.focus-green {
+	-webkit-transition: all 100ms ease-out;
+	-moz-transition: all 100ms ease-out;
+	-o-transition: all 100ms ease-out;
+	-ms-transition: all 100ms ease-out;
+	transition: all 100ms ease-out;
+}
+.focus-green:hover {
+	/*	-webkit-transform: rotate(360deg);
+		-moz-transform: rotate(360deg);
+		-o-transform: rotate(360deg);
+		-ms-transform: rotate(360deg);
+		transform: rotate(360deg);*/
+	border: 5px solid rgba(19, 170, 0, 0.74);
+	border-radius: 50%;
+}
+/*+++++++++++++++++++++++++++++++++++++++++++++++++*/
