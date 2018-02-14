@@ -73,7 +73,7 @@ class M_Users
 	}
 
 	/**
-	 * Извлечение всех пользователей
+	 * Извлечение всех пользователей (часть при наличии дополнительного условия)
 	 * @param string $sortColumn - название колонки, по которой сортируется
 	 * таблица
 	 * @param string $sortType = "ASC" || "DESC"
@@ -87,9 +87,13 @@ class M_Users
 		$format = "SELECT users.id, login,  pass,  email, " .
 			"surname,  first_name,  middle_name, role.role, photo_user " .
 			"FROM users INNER JOIN role ON users.role = role.id ";
+
 		if(!is_null($where)) {
+
+			$where = trim($where);
 			$format .= " " . $where . " ";
 		}
+
 		$format .= "ORDER BY %s %s";
 
 		$query = sprintf($format, $sortColumn, $sortType);
@@ -355,45 +359,66 @@ class M_Users
 	 * Валидация введенных данных в регистрационной форме
 	 * Также проводиться проверка на отсутствие пользователя с указанным
 	 * именем или email
-	 * @param bool $update -
-	 * @return array [$trueError, $result]
+	 * @param bool $update - Если true, то проверка login & email не выводит
+	 * предупреждение о наличии подобных данных в БД
+	 * @return array [$trueError, $result|$userForm]
 	 */
 	public function validateRegistrationForm($update = false)
 	{
+		$userForm = [];
+		//Инициализация переменных
 		$result = '';
 		$trueError = false;
-		$login = '';
-		$pass = '';
-		$email = '';
-		foreach ($_POST as $k => $v) {
-			$$k = $v;
-		}
 
-		if(strlen($login) <= 4) {
+		$userForm["login"] = (!empty($_POST["login"]))
+			? $_POST["login"] : "";
+		$userForm["email"] = (!empty($_POST["email"]))
+			? $_POST["email"] : "";
+		$userForm["nameUser"] = (!empty($_POST["nameUser"]))
+			? $_POST["nameUser"] : "";
+		$userForm["middleNameUser"] = (!empty($_POST["middleNameUser"]))
+			? $_POST["middleNameUser"] : "";
+		$userForm["surnameUser"] = (!empty($_POST["surnameUser"]))
+			? $_POST["surnameUser"] : "";
+		$userForm["role"] = (!empty($_POST["role"]))
+			? $_POST["role"] : null;
+
+		//Чистим данные от возможных вредных выражений
+		$userForm = array_map([$this, "cleanString"], $userForm);
+
+		//Пишим пароль -его не надо чистить, он хешуруется до добаления в БД
+		$userForm["pass"] = (!empty($_POST["pass"]))
+			? $_POST["pass"] : "";
+
+
+		//Проверки на правильность введенных данных
+		if(strlen($userForm["login"]) <= 4) {
 			$trueError = true;
-			($login === '')
+			($userForm["login"] === '')
 				? $result .= "Логин не может быть пустым" . "<br/>"
 				: $result .= "Логин должен содержать 5 и более символов" . "<br/>";
 		} else {
-			if(!is_null($this->getUser($login, "login"))) {
+			if(!is_null($this->getUser($userForm["login"], "login"))
+				&& !$update) {
 				$trueError = true;
 				return [$trueError, "Пользователь с таким логином уже существует"];
 			}
 		}
 
-		if(strlen($pass) <= 5) {
+		if(strlen($userForm["pass"]) <= 5) {
 			$trueError = true;
-			($pass === '')
+			($userForm["pass"] === '')
 				? $result .= "Пароль не может быть пустым" . "<br/>"
 				: $result .= "Пароль должен содержать 6 и более  символов" . "<br/>";
 		}
-		if(strlen($email) <= 6) {
+		if(strlen($userForm["email"]) <= 6) {
 			$trueError = true;
-			($email === '')
+			($userForm["email"] === '')
 				? $result .= "Email не может быть пустым" . "<br/>"
 				: $result .= "Введите настоящий Email" . "<br/>";
 		} else {
-			if(!is_null($this->getUser($email, "email"))) {
+			if(!is_null($this->getUser($userForm["email"], "email"))
+				&& !$update) {
 				$trueError = true;
 				return [$trueError, "Пользователь с такой почтой уже существует"];
 			}
@@ -402,11 +427,14 @@ class M_Users
 		if($trueError) {
 			return [$trueError, $result];
 		}
-		$this->user = $_POST;
+		$this->user = $userForm;
+
+		//Надо ли запомнить пользователя?
 		if(!empty($_POST["rememberUser"])) {
 			$this->rememberUser = true;
 		}
-		return [$trueError, $_POST];
+
+		return [$trueError, $userForm];
 
 
 	}
@@ -422,6 +450,10 @@ class M_Users
 		$trueError = false;
 		$itemName = (!empty($_POST['login'])) ? $_POST['login'] : '';
 		$pass = (!empty($_POST['pass'])) ? $_POST['pass'] : '';
+
+		//Чистим данные от возможных вредных выражений
+		$itemName = $this->cleanString($itemName);
+
 
 		if(!empty($byLogin = $this->getUser($itemName, "login"))) {
 			$user = $byLogin;
@@ -449,35 +481,39 @@ class M_Users
 	 */
 	public function cleanString($value = "")
 	{
+		//Отсеивание пустых данных
+		if(strlen($value) === 0) {
+			return $value;
+		}
+
 		$value = trim($value);
 		$value = stripslashes($value);
 		$value = strip_tags($value);
 		$value = htmlspecialchars($value);
 
 		//Выражение начинается с Заглавной буквы?
-		$oneUcFirst =false;
-		$oneChar=IntlChar::ord($value[0]);
-		if($oneChar>65 && $oneChar<90){
-			$oneUcFirst=true;
+		$oneUcFirst = false;
+		$oneChar = IntlChar::ord($value[0]);
+		if($oneChar > 65 && $oneChar < 90) {
+			$oneUcFirst = true;
 		}
 
 		$value = strtolower($value);
 		//Удаление из строки опасных выражений
-		$expressions= U_List_prohibited_expressions::expressions;
-		foreach ($expressions as $k){
-			$value=str_replace($k,"",$value);
+		$expressions = U_List_prohibited_expressions::expressions;
+		foreach ($expressions as $k) {
+			$value = str_replace($k, "", $value);
 		}
 		//удаляем символ ";"
-		$value=str_replace(";","",$value);
+		$value = str_replace(";", "", $value);
 
 		//Преобразуем первый символ в верхний регистр
-		if ($oneUcFirst){
-			$value=ucfirst($value);
+		if($oneUcFirst) {
+			$value = ucfirst($value);
 		}
 
 		return $value;
 	}
-
 
 	/**
 	 * Вставка пользователя в БД
@@ -486,7 +522,7 @@ class M_Users
 	 */
 	public function registrationUser($userParameters)
 	{
-		$role = (!empty($userParameters["role"]))
+		$role = (!is_null($userParameters["role"]))
 			? $this->getIdRole($userParameters["role"])
 			: $this->getIdRole("пользователь");
 		$pass = $this->hashPass($userParameters["pass"]);
