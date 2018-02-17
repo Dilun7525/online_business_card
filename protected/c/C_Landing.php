@@ -21,8 +21,8 @@ class C_Landing extends C_Base
 
 		$this->dataTemplate[]=
 			[
-			"template" => PATH_VIEW . "V_Landing.php",
-			//"template" => PATH_VIEW . "test.php",
+			"template" => PATH_VIEW_R . "V_Landing.php",
+			//"template" => PATH_VIEW_R . "test.php",
 			"title" => $this->title,
 		];
 

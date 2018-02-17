@@ -21,7 +21,7 @@ class C_Error_404 extends C_Base
 
 		$this->dataTemplate[]=
 			[
-			"template" => PATH_VIEW . "V_Error_404.php",
+			"template" => PATH_VIEW_R . "V_Error_404.php",
 			"title" => $this->title,
 		];
 

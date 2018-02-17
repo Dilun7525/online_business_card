@@ -1,6 +1,6 @@
 <?php
 /**загрузка заголовка*/
-require_once $_SERVER['DOCUMENT_ROOT'] . PATH_TEMPLATE . 'setup_head.php';
+require_once PATH_TEMPLATE_R. 'setup_head.php';
 ?>
 <body>
 <!--Content-->

@@ -53,7 +53,7 @@ class C_Users extends C_Base
 
 		//Подготовка Header
 		$this->dataTemplate = [[
-			"template" => PATH_TEMPLATE . "header.php",
+			"template" => PATH_TEMPLATE_R . "header.php",
 			"title" => $this->title,
 			"logo" => "logo.png",
 			"authorization" => $this->authorization,
@@ -67,7 +67,7 @@ class C_Users extends C_Base
 		$iEnd = count($dataBD);
 		foreach ($dataBD as $value) {
 			$this->dataTemplate[] = [
-				"template" => PATH_VIEW . "V_TableUsers.php",
+				"template" => PATH_VIEW_R . "V_TableUsers.php",
 				"i" => $i,
 				"iEnd" => $iEnd,
 				"trueAdmin" => $this->trueAdmin,
@@ -85,7 +85,7 @@ class C_Users extends C_Base
 
 		//Подготовка Footer
 		$this->dataTemplate[] = [
-			"template" => PATH_TEMPLATE . "footer.php",
+			"template" => PATH_TEMPLATE_R . "footer.php",
 			"logo" => "logo.png",
 		];
 
@@ -128,7 +128,7 @@ class C_Users extends C_Base
 
 		//Подготовка Header
 		$this->dataTemplate = [[
-			"template" => PATH_TEMPLATE . "header.php",
+			"template" => PATH_TEMPLATE_R . "header.php",
 			"title" => $this->title,
 			"logo" => "logo.png",
 			"authorization" => $this->authorization,

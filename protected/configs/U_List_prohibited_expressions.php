@@ -7,7 +7,8 @@
 class U_List_prohibited_expressions
 {
 	const expressions = [
-		//Команды БД
+		//region Команды БД
+
 		"create database",
 		"create table",
 		"create view",
@@ -32,7 +33,9 @@ class U_List_prohibited_expressions
 		"processlist",
 		"where ",
 		"order by",
-		//Команды системы
+		//endregion
+
+		//region Команды системы
 		"ls ",
 		"cat ",
 		"cd ",
@@ -144,6 +147,50 @@ class U_List_prohibited_expressions
 		"lprm ",
 		"nice ",
 		"renice  ",
+		//endregion
+
+		//region Команды PHP
+		'argv',
+		'argc',
+		'gateway_interface',
+		'server_addr',
+		'server_name',
+		'server_software',
+		'server_protocol',
+		'request_method',
+		'request_time',
+		'request_time_float',
+		'query_string',
+		'document_root',
+		'http_accept',
+		'http_accept_charset',
+		'http_accept_encoding',
+		'http_accept_language',
+		'http_connection',
+		'http_host',
+		'http_referer',
+		'http_user_agent',
+		'https',
+		'remote_addr',
+		'remote_host',
+		'remote_port',
+		'remote_user',
+		'redirect_remote_user',
+		'script_filename',
+		'server_admin',
+		'server_port',
+		'server_signature',
+		'path_translated',
+		'script_name',
+		'request_uri',
+		'php_auth_digest',
+		'php_auth_user',
+		'php_auth_pw',
+		'auth_type',
+		'path_info',
+		'orig_path_info',
+		//endregion
+
 	];
 
 }

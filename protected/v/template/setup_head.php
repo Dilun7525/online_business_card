@@ -1,8 +1,9 @@
 <?php
 /**получаем начальные настройки сайта
  */
-require_once $_SERVER['DOCUMENT_ROOT'] .
-	'protected/configs/initial_setup/setup.php';
+/*require_once $_SERVER['DOCUMENT_ROOT'] .
+	'protected/configs/initial_setup/setup.php';*/
+require_once PATH_SETUP_R."setup.php";
 ?>
 
 <!DOCTYPE html>

@@ -1,10 +1,8 @@
 <?php
 
-//
-// Менеджер пользователей
-//
-
-
+/**
+ * Менеджер пользователей
+*/
 class M_Users
 {
 	//region regionVariableS
@@ -49,7 +47,7 @@ class M_Users
 
 	protected function __construct()
 	{
-		$this->driverDB = M_DB::getInstance(PATH_CONFIGS . "db_install.txt");
+		$this->driverDB = M_DB::getInstance(PATH_CONFIGS_R . "db_install.txt");
 		$this->login();
 		$this->clearSessions();
 	}
@@ -615,14 +613,13 @@ class M_Users
 		}
 
 		if(empty($_SESSION["sortType"])) {
-			$_SESSION["sortType"] = "ASC";
+			$_SESSION["sortType"] = "DESC";
 		}
 
 		if(empty($_SESSION["sortColumn"])) {
 			$_SESSION["sortColumn"] = null;
 		}
 	}
-
 
 	/**Переключатель направления сортировки таблицы*/
 	public function switchSortType()
@@ -633,10 +630,10 @@ class M_Users
 
 		if($_SESSION["switchSorting"]) {
 			$_SESSION["switchSorting"] = false;
-			$_SESSION["sortType"] = "ASC";
+			$_SESSION["sortType"] = "DESC";
 		} else {
 			$_SESSION["switchSorting"] = true;
-			$_SESSION["sortType"] = "DESC";
+			$_SESSION["sortType"] = "ASC";
 		}
 	}
 }

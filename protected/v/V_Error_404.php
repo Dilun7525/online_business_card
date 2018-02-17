@@ -1,6 +1,6 @@
 <?php
 /**загрузка заголовка*/
-require_once $_SERVER['DOCUMENT_ROOT'] . 'protected/v/template/setup_head.php';?>
+require_once PATH_TEMPLATE_R. 'setup_head.php';?>
 
 <body class="bg-404">
 <!--Content-->
